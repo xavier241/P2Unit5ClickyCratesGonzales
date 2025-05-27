@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+
+  
+
+    public GameObject titleScreen;
     public Button reastartButton;
     public bool isGameActive;
     public TextMeshProUGUI gameOverText;
@@ -55,11 +59,16 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void StartGame() 
+    public void StartGame(int difficulty) 
     {
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
+        spawnRate = spawnRate /= difficulty;
+
+
         UpdateScore(0);
+
+        titleScreen.gameObject.SetActive(false);
     }
 }
